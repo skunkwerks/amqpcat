@@ -46,11 +46,11 @@ Usage: amqpcat [arguments]
     -r ROUTINGKEY, --routing-key=KEY Routing key when publishing
     -q QUEUE, --queue=QUEUE          Queue to consume from
     -f FORMAT, --format=FORMAT       Format string (default "%s\n")
-				     %e: Exchange name
-				     %r: Routing key
-				     %s: Body, as string
-				     \n: Newline
-				     \t: Tab
+                     %e: Exchange name
+                     %r: Routing key
+                     %s: Body, as string
+                     \n: Newline
+                     \t: Tab
     -v, --version                    Display version
     -h, --help                       Show this help message
 ```
@@ -64,6 +64,14 @@ echo Hello World | amqpcat --producer --uri=$CLOUDAMQP_URL --queue test
 ```
 
 Consume from the queue named `test`:
+
+```sh
+amqpcat --consumer --uri=$CLOUDAMQP_URL --queue test
+```
+
+Consume from the queue named `test`, dumping each message into a given
+directory, instead of STDOUT, deriving the filename from the message
+properties, or timestamp if no properties are set:
 
 ```sh
 amqpcat --consumer --uri=$CLOUDAMQP_URL --queue test
